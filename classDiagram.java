@@ -56,21 +56,6 @@ class dokter{
            System.out.println("nama: "+tempList.peek().namaPasien);
            tempList.remove();
        }
-    }
-    
-    public void removePasien(){
-        //pasien listPasien;
-        System.out.println("Remove Pasien :");
-        System.out.println("ID Pasien yang akan dihapus");
-        int idPasien = in.nextInt();
-        Queue<pasien> tempList;
-        tempList = listPasien;
-        pasien removedPasien = tempList.remove();
-        while (removedPasien.idPasien != idPasien) {
-            removedPasien=tempList.remove();
-        }
-        listPasien.remove(removedPasien);
-        System.out.println("remove pasien berhasil");
     } 
 }
 class pasien{
