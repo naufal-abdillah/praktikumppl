@@ -80,7 +80,7 @@ class daftarAlergi{
 
     }
 }
-class utama{
+public class classDiagram{
     public static void main(String[] args){
         pasien pas = new pasien();
         pas.register();
