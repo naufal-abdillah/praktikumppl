@@ -6,10 +6,13 @@ class pasien {
     Boolean sex;
     String email;
     String password;
-    int n = 0;
+    static int n = 0;
+    {
+        n += 1;
+        idPasien = n;
+    }
     public void register(){
         System.out.println("Register:");
-        idPasien = n+1;
         System.out.print("Nama pasien = ");
         namaPasien = in.nextLine();
         System.out.print("Jenis kelamin (0 = wanita, 1 = pria) = ");
@@ -89,10 +92,13 @@ class dokter{
     String password;
     Queue<pasien> listPasien = new LinkedList<pasien>();
     
-    int n = 0;
+    static int m = 0;
+    {
+        m += 1;
+        idDokter = m;
+    }
     public void register(){
         System.out.println("Register:");
-        idDokter = n+1;
         System.out.print("Nama dokter = ");
         namaDokter = in.nextLine();
         System.out.print("Jenis kelamin (0 = wanita, 1 = pria) = ");
