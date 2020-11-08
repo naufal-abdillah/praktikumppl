@@ -1,5 +1,5 @@
 import java.util.*;
-class pasien implements Comparable<pasien>{
+class pasien {
     Scanner in = new Scanner(System.in);
     int idPasien;
     String namaPasien;
@@ -87,7 +87,7 @@ class dokter{
     Boolean sex;
     String email;
     String password;
-    Queue<pasien> listPasien = new PriorityQueue<pasien>();
+    Queue<pasien> listPasien = new LinkedList<pasien>();
     
     int n = 0;
     public void register(){
