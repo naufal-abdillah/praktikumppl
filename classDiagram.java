@@ -1,4 +1,78 @@
 import java.util.*;
+class dokter{
+    Scanner in = new Scanner(System.in);
+    int idDokter;
+    String namaDokter;
+    Boolean sex;
+    String email;
+    String password;
+    Queue<pasien> listPasien = new PriorityQueue<pasien>();
+    
+    int n = 0;
+    public void register(){
+        System.out.println("Register:");
+        idDokter = n+1;
+        System.out.print("Nama dokter = ");
+        namaDokter = in.nextLine();
+        System.out.print("Jenis kelamin (0 = wanita, 1 = pria) = ");
+        int j = in.nextInt();
+        if(j == 1){
+            sex = true;
+        }
+        else{
+            sex = false;
+        }
+        in.nextLine();
+        System.out.print("Email = ");
+        email = in.nextLine();
+        System.out.print("Password = ");
+        password = in.nextLine();
+        System.out.println("Register Success");
+    }
+    public void login(){
+        System.out.println("Login:");
+        System.out.print("Email = ");
+        String a = in.nextLine();
+        System.out.print("Password = ");
+        String b = in.nextLine();
+        if(a.equals(email) && b.equals(password)){
+            System.out.println("Login Success");
+        }
+        else{
+            System.out.println("Login Failed - Wrong email or password");
+        }
+    }
+    
+    public void addPasien(pasien pasienBaru){
+        listPasien.add(pasienBaru);
+    }
+    
+    public void showPasien(){
+       System.out.println("List pasien: ");
+       Queue<pasien> tempList;
+       tempList = listPasien;
+       while (listPasien.isEmpty()==false) {
+           System.out.println("ID: "+tempList.peek().idPasien);
+           System.out.println("nama: "+tempList.peek().namaPasien);
+           tempList.remove();
+       }
+    }
+    
+    public void removePasien(){
+        //pasien listPasien;
+        System.out.println("Remove Pasien :");
+        System.out.println("ID Pasien yang akan dihapus");
+        int idPasien = in.nextInt();
+        Queue<pasien> tempList;
+        tempList = listPasien;
+        pasien removedPasien = tempList.remove();
+        while (removedPasien.idPasien != idPasien) {
+            removedPasien=tempList.remove();
+        }
+        listPasien.remove(removedPasien);
+        System.out.println("remove pasien berhasil");
+    } 
+}
 class pasien{
     Scanner in = new Scanner(System.in);
     int idPasien;
@@ -88,5 +162,12 @@ public class classDiagram{
         daftarAlergi daf = new daftarAlergi();
         daf.tambah();
         daf.update();
+        dokter dok = new dokter();
+        dok.register();
+        dok.login();
+        //menambah pasien "pas" sebagai pasien dokter "dok"
+        dok.addPasien(pas);
+        //menunjukkan list pasien dari dokter "dok"
+        dok.showPasien();
     }
 }
