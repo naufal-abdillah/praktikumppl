@@ -1,64 +1,5 @@
 import java.util.*;
-class dokter{
-    Scanner in = new Scanner(System.in);
-    int idDokter;
-    String namaDokter;
-    Boolean sex;
-    String email;
-    String password;
-    Queue<pasien> listPasien = new PriorityQueue<pasien>();
-    
-    int n = 0;
-    public void register(){
-        System.out.println("Register:");
-        idDokter = n+1;
-        System.out.print("Nama dokter = ");
-        namaDokter = in.nextLine();
-        System.out.print("Jenis kelamin (0 = wanita, 1 = pria) = ");
-        int j = in.nextInt();
-        if(j == 1){
-            sex = true;
-        }
-        else{
-            sex = false;
-        }
-        in.nextLine();
-        System.out.print("Email = ");
-        email = in.nextLine();
-        System.out.print("Password = ");
-        password = in.nextLine();
-        System.out.println("Register Success");
-    }
-    public void login(){
-        System.out.println("Login:");
-        System.out.print("Email = ");
-        String a = in.nextLine();
-        System.out.print("Password = ");
-        String b = in.nextLine();
-        if(a.equals(email) && b.equals(password)){
-            System.out.println("Login Success");
-        }
-        else{
-            System.out.println("Login Failed - Wrong email or password");
-        }
-    }
-    
-    public void addPasien(pasien pasienBaru){
-        listPasien.add(pasienBaru);
-    }
-    
-    public void showPasien(){
-       System.out.println("List pasien: ");
-       Queue<pasien> tempList;
-       tempList = listPasien;
-       while (listPasien.isEmpty()==false) {
-           System.out.println("ID: "+tempList.peek().idPasien);
-           System.out.println("nama: "+tempList.peek().namaPasien);
-           tempList.remove();
-       }
-    } 
-}
-class pasien{
+class pasien implements Comparable<pasien>{
     Scanner in = new Scanner(System.in);
     int idPasien;
     String namaPasien;
@@ -139,6 +80,68 @@ class daftarAlergi{
 
     }
 }
+class dokter{
+    Scanner in = new Scanner(System.in);
+    int idDokter;
+    String namaDokter;
+    Boolean sex;
+    String email;
+    String password;
+    Queue<pasien> listPasien = new PriorityQueue<pasien>();
+    
+    int n = 0;
+    public void register(){
+        System.out.println("Register:");
+        idDokter = n+1;
+        System.out.print("Nama dokter = ");
+        namaDokter = in.nextLine();
+        System.out.print("Jenis kelamin (0 = wanita, 1 = pria) = ");
+        int j = in.nextInt();
+        if(j == 1){
+            sex = true;
+        }
+        else{
+            sex = false;
+        }
+        in.nextLine();
+        System.out.print("Email = ");
+        email = in.nextLine();
+        System.out.print("Password = ");
+        password = in.nextLine();
+        System.out.println("Register Success");
+    }
+    public void login(){
+        System.out.println("Login:");
+        System.out.print("Email = ");
+        String a = in.nextLine();
+        System.out.print("Password = ");
+        String b = in.nextLine();
+        if(a.equals(email) && b.equals(password)){
+            System.out.println("Login Success");
+        }
+        else{
+            System.out.println("Login Failed - Wrong email or password");
+        }
+    }
+    
+    public void addPasien(pasien pasienBaru){
+        pasien tempPasien = new pasien();
+        tempPasien = pasienBaru;
+        listPasien.add(tempPasien);
+    }
+    
+    public void showPasien(){
+       System.out.println("List pasien: ");
+       Queue<pasien> tempList;
+       tempList = listPasien;
+       while (listPasien.isEmpty()==false) {
+           System.out.println("ID: "+tempList.peek().idPasien);
+           System.out.println("nama: "+tempList.peek().namaPasien);
+           tempList.remove();
+       }
+    } 
+}
+
 public class classDiagram{
     public static void main(String[] args){
         pasien pas = new pasien();
@@ -152,6 +155,7 @@ public class classDiagram{
         dok.login();
         //menambah pasien "pas" sebagai pasien dokter "dok"
         dok.addPasien(pas);
+        System.out.println("asdf");
         //menunjukkan list pasien dari dokter "dok"
         dok.showPasien();
     }
