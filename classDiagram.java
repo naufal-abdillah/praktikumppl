@@ -155,7 +155,6 @@ public class classDiagram{
         dok.login();
         //menambah pasien "pas" sebagai pasien dokter "dok"
         dok.addPasien(pas);
-        System.out.println("asdf");
         //menunjukkan list pasien dari dokter "dok"
         dok.showPasien();
     }
