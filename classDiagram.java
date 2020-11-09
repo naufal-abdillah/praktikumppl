@@ -229,7 +229,21 @@ class riwayatMakan {
     String idMakanan ;
     Date waktuMakan ;
     boolean isAlergi ;
+    makanan food = new makanan() ;
+    String bahanMakan1 = food.bahanMakan ;
+    daftarAlergi daftar = new daftarAlergi() ;
+    String bahanAlergi = daftar.bahanMakanan.get(0) ;
     
+    
+    public void cekAlergi() {
+        if (bahanMakan1.equals(bahanAlergi)) {
+            isAlergi = true ;
+            System.out.print("Makanan ini mengandung bahan alergi anda !!");
+        }
+        else {
+            System.out.print("Makanan ini aman anda makan.");
+        }
+    }
 }
 
 public class classDiagram{
@@ -237,9 +251,11 @@ public class classDiagram{
         pasien pas = new pasien();
         pas.register();
         pas.login();
+
         daftarAlergi daf = new daftarAlergi();
         daf.tambah();
         daf.update();
+
         dokter dok = new dokter();
         dok.register();
         dok.login();
@@ -247,8 +263,12 @@ public class classDiagram{
         dok.addPasien(pas);
         //menunjukkan list pasien dari dokter "dok"
         dok.showPasien();
+
         makanan food = new makanan() ;
         food.tambah() ;
         food.update() ;
+
+        riwayatMakan riwayat = new riwayatMakan() ;
+        riwayat.cekAlergi();
     }
 }
