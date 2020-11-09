@@ -47,40 +47,86 @@ class pasien {
 class daftarAlergi{
     Scanner in = new Scanner(System.in);
     int idPasien;
-    String namaAlergi;
-    String bahanMakanan;
-    String obat;
-    public void tambah(){
-        System.out.println("Tambah daftar alergi :");
+    ArrayList<String> namaAlergi = new ArrayList<String>();
+    ArrayList<String> bahanMakanan = new ArrayList<String>();
+    ArrayList<String> obat = new ArrayList<String>();
+    {
         System.out.print("ID Pasien = ");
         idPasien = in.nextInt();
         in.nextLine();
+    }
+    public void tambah(){
+        System.out.println("Tambah daftar alergi :");
         System.out.print("Nama Alergi = ");
-        namaAlergi = in.nextLine();
-        System.out.print("Bahan Makanan = ");
-        bahanMakanan = in.nextLine();
+        String a = in.nextLine();
+        namaAlergi.add(a);
+        System.out.print("Bahan Makanan = "); 
+        String b= in.nextLine();
+        bahanMakanan.add(b);
         System.out.print("Obat = ");
-        obat = in.nextLine();
+        String c = in.nextLine();
+        obat.add(c);
         System.out.println("Daftar alergi berhasil ditambah");
+        Collections.sort(namaAlergi);
+        Collections.sort(bahanMakanan);
+        Collections.sort(obat);
     }
     public void update(){
-        System.out.println("Update daftar alergi :");
-        System.out.print("ID Pasien = ");
-        int k = in.nextInt();
+        System.out.println("\nUpdate daftar alergi :");
+        System.out.println("1. Nama Alergi\n2. Bahan Makanan\n3. Obat");
+        System.out.print("Pilih = ");
+        int key = in.nextInt();
         in.nextLine();
-        if(k == idPasien){
-            System.out.print("Nama Alergi = ");
-            namaAlergi = in.nextLine();
-            System.out.print("Bahan Makanan = ");
-            bahanMakanan = in.nextLine();
-            System.out.print("Obat = ");
-            obat = in.nextLine();
-            System.out.println("Daftar alergi berhasil diupdate");
+        switch(key){
+            case 1 : 
+                System.out.print("Nama Alergi yang ingin diubah = ");
+                String d = in.nextLine();
+                for(int i=0; i<namaAlergi.size(); i++){
+                    if(namaAlergi.get(i).equalsIgnoreCase(d)){
+                        System.out.print("Nama Alergi Baru = ");
+                        String e = in.nextLine();
+                        namaAlergi.set(i,e);
+                        Collections.sort(namaAlergi);
+                        System.out.println("Data berhasil diupdate");
+                    }
+                    else{
+                        System.out.println("Data tidak ditemukan");
+                    }
+                }
+            break;
+            case 2:
+                System.out.print("Bahan Makanan yang ingin diubah = ");
+                d = in.nextLine();
+                for(int i=0; i<bahanMakanan.size(); i++){
+                    if(bahanMakanan.get(i).equalsIgnoreCase(d)){
+                        System.out.print("Bahan Makanan Baru = ");
+                        String e = in.nextLine();
+                        bahanMakanan.set(i,e);
+                        Collections.sort(bahanMakanan);
+                        System.out.println("Data berhasil diupdate");
+                    }
+                    else{
+                        System.out.println("Data tidak ditemukan");
+                    }
+                }
+            break;
+            case 3:
+                System.out.print("Obat yang ingin diubah = ");
+                d = in.nextLine();
+                for(int i=0; i<obat.size(); i++){
+                    if(obat.get(i).equalsIgnoreCase(d)){
+                        System.out.print("Obat Baru = ");
+                        String e = in.nextLine();
+                        obat.set(i,e);
+                        Collections.sort(obat);
+                        System.out.println("Data berhasil diupdate");
+                    }
+                    else{
+                        System.out.println("Data tidak ditemukan");
+                    }
+                }
+            break;
         }
-        else{
-            System.out.println("Daftar alergi tidak ditemukan");
-        }
-
     }
 }
 class dokter{
