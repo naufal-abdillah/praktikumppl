@@ -194,6 +194,44 @@ class dokter{
     } 
 }
 
+class makanan {
+    Scanner in = new Scanner(System.in) ;
+    int idMakanan ;
+    String namaMakanan ;
+    String bahanMakan ;
+    
+    public void tambah() {
+        System.out.println("Tambah daftar makanan :");
+        System.out.print("Id Makanan = ");
+        idMakanan = in.nextInt();
+        in.nextLine();
+        System.out.print("Nama Makanan = ");
+        namaMakanan = in.nextLine();
+        System.out.print("Bahan Makanan = ");
+        bahanMakan = in.nextLine();
+        System.out.println("Makanan berhasil ditambah");
+    }
+    
+    public void update () {
+        System.out.println("Update daftar makanan :");
+        System.out.print("Id Makanan = ");
+        idMakanan = in.nextInt();
+        in.nextLine();
+        System.out.print("Nama Makanan = ");
+        namaMakanan = in.nextLine();
+        System.out.print("Bahan Makanan = ");
+        bahanMakan = in.nextLine();
+        System.out.println("Daftar makanan berhasil diupdate");
+    }
+}
+
+class riwayatMakan {
+    String idMakanan ;
+    Date waktuMakan ;
+    boolean isAlergi ;
+    
+}
+
 public class classDiagram{
     public static void main(String[] args){
         pasien pas = new pasien();
@@ -209,5 +247,8 @@ public class classDiagram{
         dok.addPasien(pas);
         //menunjukkan list pasien dari dokter "dok"
         dok.showPasien();
+        makanan food = new makanan() ;
+        food.tambah() ;
+        food.update() ;
     }
 }
