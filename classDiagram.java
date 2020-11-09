@@ -194,54 +194,51 @@ class dokter{
     } 
 }
 
-class makanan {
-    Scanner in = new Scanner(System.in) ;
-    int idMakanan ;
-    String namaMakanan ;
-    String bahanMakan ;
-    
-    public void tambah() {
-        System.out.println("Tambah daftar makanan :");
-        System.out.print("Id Makanan = ");
-        idMakanan = in.nextInt();
-        in.nextLine();
-        System.out.print("Nama Makanan = ");
-        namaMakanan = in.nextLine();
-        System.out.print("Bahan Makanan = ");
-        bahanMakan = in.nextLine();
-        System.out.println("Makanan berhasil ditambah");
-    }
-    
-    public void update () {
-        System.out.println("Update daftar makanan :");
-        System.out.print("Id Makanan = ");
-        idMakanan = in.nextInt();
-        in.nextLine();
-        System.out.print("Nama Makanan = ");
-        namaMakanan = in.nextLine();
-        System.out.print("Bahan Makanan = ");
-        bahanMakan = in.nextLine();
-        System.out.println("Daftar makanan berhasil diupdate");
-    }
-}
-
 class riwayatMakan {
-    String idMakanan ;
-    Date waktuMakan ;
-    boolean isAlergi ;
-    makanan food = new makanan() ;
-    String bahanMakan1 = food.bahanMakan ;
-    daftarAlergi daftar = new daftarAlergi() ;
-    String bahanAlergi = daftar.bahanMakanan.get(0) ;
-    
-    
-    public void cekAlergi() {
-        if (bahanMakan1.equals(bahanAlergi)) {
-            isAlergi = true ;
-            System.out.print("Makanan ini mengandung bahan alergi anda !!");
+    Scanner in = new Scanner(System.in);
+    ArrayList<Integer> idMakanan = new ArrayList<Integer>();
+    ArrayList<String> namaMakanan = new ArrayList<String>();
+    ArrayList<String> bahanMakan = new ArrayList<String>();
+    ArrayList<Date> waktuMakan = new ArrayList<Date>();
+    boolean isAlergi;
+    static int o = 0;
+
+    public void tambah() {
+        {
+            o += 1;
+            idMakanan.add(o);
         }
-        else {
-            System.out.print("Makanan ini aman anda makan.");
+        System.out.println("Tambah riwayat makan :");
+        System.out.print("Nama Makanan = ");
+        String a = in.nextLine();
+        namaMakanan.add(a);
+        System.out.print("Bahan Makan = ");
+        String b= in.nextLine();
+        bahanMakan.add(b);
+        Date date = new Date(System.currentTimeMillis());
+        waktuMakan.add(date);
+        System.out.println("Riwayat makan berhasil ditambah");
+    }
+    
+    public void cekAlergi(daftarAlergi x) {
+        System.out.println("Cek Alergi :");
+        System.out.print("ID Makanan = ");
+        int a = in.nextInt();
+        for(int i=0; i<idMakanan.size(); i++){
+            if (idMakanan.get(i) == a) {
+                for(int j=0; j<x.bahanMakanan.size(); j++){
+                    if(bahanMakan.get(i).equalsIgnoreCase(x.bahanMakanan.get(j))){
+                        isAlergi = true ;
+                        System.out.print("Makanan ini mengandung bahan alergi anda !!");
+                        }
+                    else {
+                        System.out.print("Makanan ini aman anda makan.");
+                    }
+                }
+            }
+            else{
+                System.out.println("Data tidak ditemukan");
+            }
         }
     }
 }
@@ -263,12 +260,9 @@ public class classDiagram{
         dok.addPasien(pas);
         //menunjukkan list pasien dari dokter "dok"
         dok.showPasien();
-
-        makanan food = new makanan() ;
-        food.tambah() ;
-        food.update() ;
-
+        
         riwayatMakan riwayat = new riwayatMakan() ;
-        riwayat.cekAlergi();
+        riwayat.tambah();
+        riwayat.cekAlergi(daf);
     }
 }
